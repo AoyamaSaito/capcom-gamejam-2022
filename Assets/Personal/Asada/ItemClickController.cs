@@ -5,7 +5,22 @@ using UnityEngine.Events;
 
 public class ItemClickController : MonoBehaviour
 {
+    public static ItemClickController instance;
+
+
     [SerializeField]private IStreamable _currentItem = null;//現在選択しているアイテム
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     public UnityAction Register(IStreamable target)
     {

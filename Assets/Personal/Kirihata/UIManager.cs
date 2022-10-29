@@ -82,25 +82,25 @@ public class UIManager : MonoBehaviour
 
     //鱗をとる
     public void PushTakeScalesButton() 
-    { 
-        
+    {
+        ItemClickController.instance.FirstProcess();
     }
 
     //頭をとる
     public void PushTakeHeadButton()
-    {
-
+    { 
+        ItemClickController.instance.SecondProcess();
     }
 
     //身をひらく
     public void PushOpenButton()
     {
-
+        ItemClickController.instance.ThirdProcess();
     }
 
     //はじく
     public void PushThrowButton()
     {
-
+        ItemClickController.instance.RemoveProces();
     }
 }

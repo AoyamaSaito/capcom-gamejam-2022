@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class Aji : MonoBehaviour,IStreamable, ICommandStateController<Aji>
 {
-    public ItemClickController con;
     private UnityAction registeredSelf = null;
     public enum State
     {
@@ -24,7 +23,7 @@ public class Aji : MonoBehaviour,IStreamable, ICommandStateController<Aji>
     [SerializeField,Header("g‚ğŠJ‚¢‚½‰æ‘œ")] private Sprite _thirdSprite = null;
 
 
-    private SpriteRenderer _spriteRenderer = null;
+    [SerializeField]private SpriteRenderer _spriteRenderer = null;
 
     private List<IItemCommandState<Aji>> _stateList = new List<IItemCommandState<Aji>>();//—\–ñ‚³‚ê‚Ä‚¢‚éˆ—
     private IItemCommandState<Aji> _currentState = null;
@@ -36,7 +35,6 @@ public class Aji : MonoBehaviour,IStreamable, ICommandStateController<Aji>
 
     void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _stateList.Add(_defaultState);
         _stateList.Add(_firstState);
         _stateList.Add(_secondState);
@@ -108,7 +106,7 @@ public class Aji : MonoBehaviour,IStreamable, ICommandStateController<Aji>
 
     public void OnClick()
     {
-        registeredSelf = con.Register(this);
+        registeredSelf = ItemClickController.instance.Register(this);
     }
 
     public void DestroyObject()
