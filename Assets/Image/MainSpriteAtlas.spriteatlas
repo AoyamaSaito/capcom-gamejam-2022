@@ -40,6 +40,7 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 79c4ee81474cb49bb8eb6c6edc258d86, type: 3}
   - {fileID: 21300000, guid: 2a6415129c5d641ff845466776cca3de, type: 3}
+  - {fileID: 21300000, guid: 1d16b29706d2e4922a7ea08b6f760ad0, type: 3}
   - {fileID: 21300000, guid: 08e068f7e9fe94cbe9348460d6e97c5b, type: 3}
   - {fileID: 7482667652216324306, guid: 86e836ccf0c9a90449ca5a5f31d9224a, type: 3}
   - {fileID: 21300000, guid: 2670f47d01a984650b76add37b8115b1, type: 3}
@@ -48,6 +49,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - GrayFButtonBack
   - fish_aji_3
+  - aji_fry_single
   - fish_aji_2
   - Square
   - umi_kani
