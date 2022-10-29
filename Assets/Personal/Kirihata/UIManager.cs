@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -9,12 +10,22 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text scoreText;
     [SerializeField] float timeLimit = 120;
 
+    [SerializeField] EventSystem eventsystem;
+    [SerializeField] Button TakeScalesButton;
+    [SerializeField] Button TakeHeadButton;
+    [SerializeField] Button OpenButton;
+    [SerializeField] Button ThrowButton;
+
+
     float nowTime;
  
-    // Start is called before the first frame update
+    //初期化
     void Start()
     {
         nowTime = timeLimit;
+        SetTimeText(nowTime);
+
+        SetScoreText(0);
     }
 
     private void FixedUpdate()
@@ -22,53 +33,68 @@ public class UIManager : MonoBehaviour
         UpdateTime();
     }
 
+    //時間関係の処理
     void UpdateTime() 
     {
         if (nowTime > 0)
         {
-            nowTime -= Time.fixedDeltaTime * 3;
+            nowTime -= Time.fixedDeltaTime;
             SetTimeText(nowTime);
         }
     }
 
-    public void SetTimeText(float time) 
-    {
-        timeText.text = string.Format("残り時間 {0:0}:{1:00}", Mathf.CeilToInt(time) / 60, Mathf.CeilToInt(time) % 60);
-    }
-
-    // Update is called once per frame
+    //
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) 
         {
-            PushTakeScalesButton();
+            ExecuteEvents.Execute(TakeScalesButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            PushTakeHeadButton();
+            ExecuteEvents.Execute(TakeHeadButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            PushOpenButton();
+            ExecuteEvents.Execute(OpenButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            PushThrowButton();
+            ExecuteEvents.Execute(ThrowButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
         }
     }
 
+    //時間の表示を更新
+    public void SetTimeText(float time)
+    {
+        timeText.text = string.Format("残り時間 {0:0}:{1:00}", Mathf.CeilToInt(time) / 60, Mathf.CeilToInt(time) % 60);
+    }
+
+    //スコアの表示を更新
+    public void SetScoreText(int value)
+    {
+        scoreText.text = string.Format("¥{0:D}", value);
+    }
+
+    //鱗をとる
     public void PushTakeScalesButton() 
     { 
-    
+        
     }
+
+    //頭をとる
     public void PushTakeHeadButton()
     {
 
     }
+
+    //身をひらく
     public void PushOpenButton()
     {
 
     }
+
+    //はじく
     public void PushThrowButton()
     {
 
