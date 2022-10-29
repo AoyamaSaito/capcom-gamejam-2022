@@ -22,10 +22,10 @@ public class MainFlowManager : MonoBehaviour
 	private BeltConveyor BeltConveyor;
 
 	/// <summary>
-	/// ステージオブジェクト
+	/// アジフライコンベアマネージャ
 	/// </summary>
 	[SerializeField]
-	private GameObject StageDesignObject;
+	private AjiFryConveyorManager AjiFryConveyorManager;
 	#endregion
 
 	public static MainFlowManager Instance;
@@ -47,12 +47,13 @@ public class MainFlowManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+		changeNextPhase(Phase.Title);
 	}
 
 	// Start is called before the first frame update
 	void Start()
     {
-		changeNextPhase(Phase.Title);
+		
 	}
 
     // Update is called once per frame
@@ -122,12 +123,12 @@ public class MainFlowManager : MonoBehaviour
 					if (BeltConveyor != null)
 					{
 						// ベルトコンベア止める
-						BeltConveyor.gameObject.SetActive(false);
+						BeltConveyor.Pause();
 					}
-					if (StageDesignObject != null)
+					if (AjiFryConveyorManager != null)
 					{
 						// ステージを止める
-						//StageDesignObject.SetActive(false);
+						AjiFryConveyorManager.enabled = false;
 					}
 				}
 				break;
@@ -137,12 +138,12 @@ public class MainFlowManager : MonoBehaviour
 					if (BeltConveyor != null)
 					{
 						// ベルトコンベア動かす
-						BeltConveyor.gameObject.SetActive(true);
+						BeltConveyor.Resume();
 					}
-					if (StageDesignObject != null)
+					if (AjiFryConveyorManager != null)
 					{
 						// ステージを動かす
-						StageDesignObject.SetActive(true);
+						AjiFryConveyorManager.enabled = true;
 					}
 				}
 				break;
@@ -152,12 +153,12 @@ public class MainFlowManager : MonoBehaviour
 					if (BeltConveyor != null)
 					{
 						// ベルトコンベア止める
-						BeltConveyor.gameObject.SetActive(false);
+						BeltConveyor.Pause();
 					}
-					if (StageDesignObject != null)
+					if (AjiFryConveyorManager != null)
 					{
-						// ステージを止める
-						//StageDesignObject.SetActive(false);
+						// ステージを動かす
+						AjiFryConveyorManager.enabled = false;
 					}
 				}
 				break;
