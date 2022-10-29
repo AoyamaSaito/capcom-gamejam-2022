@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Aji : MonoBehaviour,IStreamable, ICommandStateController<Aji>
 {
     public ItemClickController con;
+    private UnityAction registeredSelf = null;
     public enum State
     {
         Default,
@@ -66,7 +68,6 @@ public class Aji : MonoBehaviour,IStreamable, ICommandStateController<Aji>
 
     public void NextState()
     {
-        Debug.Log("ŽŸ‚Ì‚·‚Ä[‚Æ‚Ö");
         if (_stateList.Count > 0)
         {
             if (_currentState != null)
@@ -83,7 +84,7 @@ public class Aji : MonoBehaviour,IStreamable, ICommandStateController<Aji>
         }
         else
         {
-            Debug.Log("‚È‚É‚à‚È‚µ");
+            //Debug.Log("‚È‚É‚à‚È‚µ");
         }
     }
 
@@ -107,7 +108,12 @@ public class Aji : MonoBehaviour,IStreamable, ICommandStateController<Aji>
 
     public void OnClick()
     {
-        Debug.Log("a");
-        con.Register(this);
+        registeredSelf = con.Register(this);
+    }
+
+    public void DestroyObject()
+    {
+        Destroy(this.gameObject);
+        registeredSelf.Invoke();
     }
 }
