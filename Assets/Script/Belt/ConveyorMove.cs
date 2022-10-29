@@ -43,7 +43,7 @@ public class ConveyorMove : MonoBehaviour
     {
         float x = _initPosition.x - transform.position.x;
 
-        if (x >= transform.localScale.x && _isInstantiate == false)
+        if (x >= transform.localScale.x - 0.2 && _isInstantiate == false)
         {
             OnEvent();
             _isInstantiate = true;

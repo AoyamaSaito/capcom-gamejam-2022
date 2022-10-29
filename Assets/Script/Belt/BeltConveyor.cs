@@ -35,7 +35,7 @@ public class BeltConveyor : MonoBehaviour
 
         if(streams[random] != null)
         {
-            Instantiate(streams[random], parent);
+            parent.SetParent(Instantiate(streams[random]).transform, false);
         }
     }
 }
