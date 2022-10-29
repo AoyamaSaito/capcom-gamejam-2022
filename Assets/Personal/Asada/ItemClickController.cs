@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class ItemClickController : MonoBehaviour
 {
-    private IStreamable _currentItem = null;//現在選択しているアイテム
+    [SerializeField]private IStreamable _currentItem = null;//現在選択しているアイテム
+
+    public void Register(IStreamable target)
+    {
+        _currentItem = target;
+        Debug.Log("今のターゲット" + _currentItem);
+    }
 
     public void FirstProcess()
     {
-        _currentItem.FirstProcess();
+        _currentItem?.FirstProcess();
     }
 
     public void SecondProcess()
     {
-        _currentItem.SecondProcess();
+        _currentItem?.SecondProcess();
     }
 
     public void ThirdProcess()
     {
-        _currentItem.ThirdProcess();
+        _currentItem?.ThirdProcess();
     }
 
     public void RemoveProces()
     {
-        _currentItem.Remove();
+        _currentItem?.Remove();
     }
 
 
