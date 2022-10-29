@@ -5,6 +5,19 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    public static ScoreManager instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     // Start is called before the first frame update
     //合計スコア
     public Text scoreText;
@@ -20,15 +33,15 @@ public class ScoreManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            AddScore(addScore);
+            AddScore();
         }
 
         scoreText.text = "Score : " + score;
     }
 
     //スコア加算
-    public void AddScore(int addscore)
+    public void AddScore()
     {
-        score += addscore;
+        score += addScore;
     }
 }
