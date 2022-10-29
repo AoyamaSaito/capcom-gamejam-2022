@@ -11,10 +11,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] float timeLimit = 120;
 
     [SerializeField] EventSystem eventsystem;
-    [SerializeField] Button TakeScalesButton;
-    [SerializeField] Button TakeHeadButton;
-    [SerializeField] Button OpenButton;
-    [SerializeField] Button ThrowButton;
+    [SerializeField] Button takeScalesButton;
+    [SerializeField] Button takeHeadButton;
+    [SerializeField] Button openButton;
+    [SerializeField] Button throwButton;
 
 
     float nowTime;
@@ -22,6 +22,10 @@ public class UIManager : MonoBehaviour
     //初期化
     void Start()
     {
+        if(eventsystem == null) 
+        {
+            Debug.LogWarning("eventsystemが設定されていません!",gameObject);
+        }
         nowTime = timeLimit;
         SetTimeText(nowTime);
 
@@ -48,19 +52,19 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) 
         {
-            ExecuteEvents.Execute(TakeScalesButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
+            ExecuteEvents.Execute(takeScalesButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ExecuteEvents.Execute(TakeHeadButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
+            ExecuteEvents.Execute(takeHeadButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ExecuteEvents.Execute(OpenButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
+            ExecuteEvents.Execute(openButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            ExecuteEvents.Execute(ThrowButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
+            ExecuteEvents.Execute(throwButton.gameObject, new BaseEventData(eventsystem), ExecuteEvents.submitHandler);
         }
     }
 
