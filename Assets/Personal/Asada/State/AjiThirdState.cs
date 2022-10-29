@@ -10,7 +10,6 @@ public class AjiThirdState : IItemCommandState<Aji>
         {
             owner.ChangeSprite(Aji.State.Third);
         }
-        Debug.Log("3");
     }
     public void OnExit(Aji owner)
     {
@@ -30,6 +29,6 @@ public class AjiThirdState : IItemCommandState<Aji>
     }
     public void RemoveOperation(Aji owner)
     {
-        //œŠOˆ—
+        owner.DestroyObject();//œŠOˆ—
     }
 }

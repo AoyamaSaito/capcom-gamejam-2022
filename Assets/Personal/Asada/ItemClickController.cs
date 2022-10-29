@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemClickController : MonoBehaviour
 {
     [SerializeField]private IStreamable _currentItem = null;//現在選択しているアイテム
 
-    public void Register(IStreamable target)
+    public UnityAction Register(IStreamable target)
     {
         _currentItem = target;
-        Debug.Log("今のターゲット" + _currentItem);
+        return () => _currentItem = null;
     }
 
     public void FirstProcess()
