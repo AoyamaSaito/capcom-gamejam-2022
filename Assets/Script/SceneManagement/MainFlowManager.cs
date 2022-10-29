@@ -14,6 +14,20 @@ public class MainFlowManager : MonoBehaviour
 	}
 	#endregion
 
+	#region SerializeField
+	/// <summary>
+	/// ベルトコンベア
+	/// </summary>
+	[SerializeField]
+	private BeltConveyor BeltConveyor;
+
+	/// <summary>
+	/// ステージオブジェクト
+	/// </summary>
+	[SerializeField]
+	private GameObject StageDesignObject;
+	#endregion
+
 	public static MainFlowManager Instance;
 
 	private Phase _CurrentPhase = Phase.Title;
@@ -38,7 +52,7 @@ public class MainFlowManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		_CurrentPhase = Phase.Title;
+		changeNextPhase(Phase.Title);
 	}
 
     // Update is called once per frame
@@ -61,8 +75,7 @@ public class MainFlowManager : MonoBehaviour
 					{
 						break;
 					}
-					SceneManager.LoadScene("InGame");
-					_CurrentPhase = Phase.InGame;
+					changeNextPhase(Phase.InGame);
 					break;
 				}
 
@@ -72,10 +85,82 @@ public class MainFlowManager : MonoBehaviour
 					{
 						break;
 					}
-					SceneManager.LoadScene("Title");
-					_CurrentPhase = Phase.Title;
+					changeNextPhase(Phase.Result);
 					break;
 				}
+
+			case Phase.Result:
+				{
+					if (Input.GetKeyDown(KeyCode.Space) == false)
+					{
+						break;
+					}
+					changeNextPhase(Phase.Title);
+					break;
+				}
+		}
+	}
+
+	/// <summary>
+	/// 次のフェーズに切り替える
+	/// </summary>
+	private void changeNextPhase(Phase next)
+	{
+		_CurrentPhase = next;
+		onChangePhase();
+	}
+
+	/// <summary>
+	/// フェーズが切り替わった時の処理
+	/// </summary>
+	private void onChangePhase()
+	{
+		switch (_CurrentPhase)
+		{
+			case Phase.Title:
+				{
+					if (BeltConveyor != null)
+					{
+						// ベルトコンベア止める
+						BeltConveyor.gameObject.SetActive(false);
+					}
+					if (StageDesignObject != null)
+					{
+						// ステージを止める
+						//StageDesignObject.SetActive(false);
+					}
+				}
+				break;
+
+			case Phase.InGame:
+				{
+					if (BeltConveyor != null)
+					{
+						// ベルトコンベア動かす
+						BeltConveyor.gameObject.SetActive(true);
+					}
+					if (StageDesignObject != null)
+					{
+						// ステージを動かす
+						StageDesignObject.SetActive(true);
+					}
+				}
+				break;
+
+			case Phase.Result:
+				{
+					if (BeltConveyor != null)
+					{
+						// ベルトコンベア止める
+						BeltConveyor.gameObject.SetActive(false);
+					}
+					if (StageDesignObject != null)
+					{
+						// ステージを止める
+						//StageDesignObject.SetActive(false);
+					}
+				}
+				break;
 		}
 	}
 }
