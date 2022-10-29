@@ -43,6 +43,21 @@ public class AjiFryConveyorManager : MonoBehaviour
         }
     }
 
+    /*
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A)) 
+        {
+            AddAjifly();
+        }
+        if (Input.GetKeyDown(KeyCode.B)) 
+        {
+            DisableAllAjifry();
+        }
+    }
+    */
+
+    //アジフライを生成する
     public void AddAjifly()
     {
         if (disableObjs.Count > 0)
@@ -58,7 +73,15 @@ public class AjiFryConveyorManager : MonoBehaviour
         traTmp.localPosition = Vector3.zero;
         enableObjs.Add(traTmp);
         return;
+    }
 
+    //全てのアジフライを消す
+    public void DisableAllAjifry() 
+    {
+        for (i = enableObjs.Count-1; i >= 0; i--)
+        {
+            DisableObject(i);
+        }
     }
 
     void DisableObject(int index)
