@@ -48,7 +48,10 @@ public class ConveyorMove : MonoBehaviour
 
         if (x >= 1.8 && _isInstantiate == false)
         {
-            OnEvent();
+            if(OnEvent != null)
+            {
+                OnEvent();
+            }
             _isInstantiate = true;
         }
     }
