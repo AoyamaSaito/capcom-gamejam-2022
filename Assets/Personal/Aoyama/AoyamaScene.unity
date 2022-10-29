@@ -646,17 +646,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeltConveyor2
       objectReference: {fileID: 0}
-    - target: {fileID: 4963310016067728544, guid: d75a5835e18aa5348ba99368e6afbcc7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4963310016067728556, guid: d75a5835e18aa5348ba99368e6afbcc7, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4963310016067728556, guid: d75a5835e18aa5348ba99368e6afbcc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 9.92
       objectReference: {fileID: 0}
     - target: {fileID: 4963310016067728556, guid: d75a5835e18aa5348ba99368e6afbcc7, type: 3}
       propertyPath: m_LocalPosition.y
