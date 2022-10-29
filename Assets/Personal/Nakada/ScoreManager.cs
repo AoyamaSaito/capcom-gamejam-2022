@@ -21,7 +21,6 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     //合計スコア
     public Text scoreText;
-    public int addScore;
     private int score;
     void Start()
     {
@@ -31,17 +30,18 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            AddScore();
-        }
+        //確認用
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    AddScore(1);
+        //}
 
         scoreText.text = "Score : " + score;
     }
 
     //スコア加算
-    public void AddScore()
+    public void AddScore(int addscore)
     {
-        score += addScore;
+        score += addscore;
     }
 }
