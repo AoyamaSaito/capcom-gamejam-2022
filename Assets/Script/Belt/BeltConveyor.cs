@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO ResetŠÖ”‚ğì‚é
+
 public class BeltConveyor : MonoBehaviour
 {
     [SerializeField]
@@ -15,10 +17,18 @@ public class BeltConveyor : MonoBehaviour
     [Tooltip("ƒRƒ“ƒxƒA‚ÌList"), HideInInspector]
     public List<GameObject> _conveyors = new List<GameObject>();
     private int _count = 0;
+    private float _timer = 0;
 
     private void Start()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         ConveyorGenerator();
+        _count = 0;
+        _timer = 0;
     }
 
     private void Update()
@@ -64,6 +74,12 @@ public class BeltConveyor : MonoBehaviour
         _conveyors.ForEach(i => i.GetComponent<ConveyorMove>().Resume());
     }
 
+    public void ConveyorReset()
+    {
+        _conveyors.ForEach(i => Destroy(i));
+        Init();
+    }
+
     private List<float> _speedList = new List<float>()
     {
         1,
@@ -80,7 +96,6 @@ public class BeltConveyor : MonoBehaviour
         6.5f
     };
 
-    float _timer = 0;
     private void Timer()
     {
         _timer += Time.deltaTime;
