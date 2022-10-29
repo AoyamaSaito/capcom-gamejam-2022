@@ -118,7 +118,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _conveyor: {fileID: 4963310016067728546, guid: d75a5835e18aa5348ba99368e6afbcc7, type: 3}
   streams:
-  - {fileID: 8714026807629717353, guid: 3b3133c381132974b9938632a3fe30be, type: 3}
-  - {fileID: 5555911834878933666, guid: 8d65a20362632ae40bc794dedf357eab, type: 3}
-  - {fileID: 4902534252592147878, guid: 360b46ad91a58664f829ef3db190a9fb, type: 3}
-  - {fileID: 4913427963215390213, guid: 318ba6131f858574eb2a79fb4d41605e, type: 3}
+  - {fileID: 82893190282111748, guid: bfb773b1612493d49b5c1bf361a2b31e, type: 3}
