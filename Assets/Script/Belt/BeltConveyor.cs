@@ -21,22 +21,23 @@ public class BeltConveyor : MonoBehaviour
     private void ConveyorGenerator()
     {
         var go = Instantiate(_conveyor.gameObject, transform.position, Quaternion.identity);
-        go.GetComponent<ConveyorMove>().OnEvent += ConveyorGenerator;
+        ConveyorMove conveyorMove = go.GetComponent<ConveyorMove>();
+        conveyorMove.OnEvent += ConveyorGenerator;
         if (streams != null)
         {
-            StreamGenerator(go.transform);
+            StreamGenerator(conveyorMove.transform, conveyorMove.Positions[Random.Range(0, conveyorMove.Positions.Length)].localPosition);
         }
         _conveyors.Add(go);
     }
 
-    private void StreamGenerator(Transform parent)
+    private void StreamGenerator(Transform parent, Vector3 position)
     {
         int random = Random.Range(0, streams.Length);
 
         if(streams[random] != null)
         {
-            var go = Instantiate(streams[random]);
-            Instantiate(streams[random]).transform.SetParent(parent, false);
+            var go = Instantiate(streams[random], position, Quaternion.identity);
+            go.transform.SetParent(parent, false);
         }
     }
 }

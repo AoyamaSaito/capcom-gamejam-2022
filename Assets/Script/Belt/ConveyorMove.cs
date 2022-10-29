@@ -10,6 +10,9 @@ public class ConveyorMove : MonoBehaviour
     private Rigidbody2D _rb;
     [SerializeField, Tooltip("移動スピード")]
     private float _speed = 5f;
+    [SerializeField]
+    private Transform[] _positions;
+    public Transform[] Positions => _positions;
 
     public Action OnEvent;
 
